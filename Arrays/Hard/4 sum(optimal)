@@ -1,0 +1,37 @@
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+
+        List<List<Integer>> ans = new ArrayList<>();
+
+        Arrays.sort(nums);
+
+        for(int a = 0; a<nums.length; a++){
+            for(int b=a+1; b<nums.length; b++){
+                List<Integer> quad = new ArrayList<>();
+                
+                int c = b+1;
+                int d = nums.length - 1;
+
+                while(c < d){
+                    long sum = (long)nums[a] + nums[b] + nums[c] + nums[d];
+                    if(sum == target){
+                        quad = Arrays.asList(nums[a], nums[b], nums[c], nums[d]);
+                        if(!ans.contains(quad)){
+                            ans.add(quad);
+                        }
+                        c++;
+                        d--;
+                    }
+                    else if(sum < target){
+                        c++;
+                    }
+                    else{
+                        d--;
+                    }
+                }
+            }
+        }
+        return ans;
+        
+    }
+}
